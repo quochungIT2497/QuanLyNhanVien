@@ -249,10 +249,10 @@ namespace BaiTapWinForm
 
         private void btn_Xoa_Click(object sender, EventArgs e)
         {
-            if(!CheckBox())
+            if(CheckBox())
             {
                 ValueTxtBox();
-                String query = "Deleted From NHANVIEN where [MA_NV] = '" + QLNV.MNV + "'";
+                String query = "Delete From NHANVIEN where [MA_NV] = '" + QLNV.MNV + "'";
                 try
                 {
                     if(MessageBox.Show("Bạn có muốn xóa không?","Thông báo",MessageBoxButtons.YesNo,MessageBoxIcon.Question)==DialogResult.Yes)
