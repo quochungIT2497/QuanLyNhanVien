@@ -252,7 +252,7 @@ namespace BaiTapWinForm
             if(!CheckBox())
             {
                 ValueTxtBox();
-                String query = "Deleted From NHANVIEN where [MA_NV] = '" + QLNV.MNV + "' or [HO_TEN] like N'%" + QLNV.HT + "'";
+                String query = "Deleted From NHANVIEN where [MA_NV] = '" + QLNV.MNV + "'";
                 try
                 {
                     if(MessageBox.Show("Bạn có muốn xóa không?","Thông báo",MessageBoxButtons.YesNo,MessageBoxIcon.Question)==DialogResult.Yes)
