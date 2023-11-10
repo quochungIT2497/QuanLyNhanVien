@@ -28,9 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.dgv_QLNV = new System.Windows.Forms.DataGridView();
             this.lbl_QL = new System.Windows.Forms.Label();
             this.grp_TK = new System.Windows.Forms.GroupBox();
+            this.lbl_TK = new System.Windows.Forms.Label();
             this.txt_TK = new System.Windows.Forms.TextBox();
             this.comboBox_SapXep = new System.Windows.Forms.ComboBox();
             this.lbl_SapXep = new System.Windows.Forms.Label();
@@ -60,8 +62,8 @@
             this.btn_Xoa = new System.Windows.Forms.Button();
             this.grp_TT = new System.Windows.Forms.GroupBox();
             this.comboBox_PHAI = new System.Windows.Forms.ComboBox();
-            this.btn_TimKiem = new System.Windows.Forms.Button();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_QLNV)).BeginInit();
             this.grp_TK.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -90,7 +92,7 @@
             // 
             // grp_TK
             // 
-            this.grp_TK.Controls.Add(this.btn_TimKiem);
+            this.grp_TK.Controls.Add(this.lbl_TK);
             this.grp_TK.Controls.Add(this.txt_TK);
             this.grp_TK.Controls.Add(this.comboBox_SapXep);
             this.grp_TK.Controls.Add(this.lbl_SapXep);
@@ -101,12 +103,23 @@
             this.grp_TK.TabStop = false;
             this.grp_TK.Text = "Công cụ";
             // 
+            // lbl_TK
+            // 
+            this.lbl_TK.AutoSize = true;
+            this.lbl_TK.ForeColor = System.Drawing.Color.Maroon;
+            this.lbl_TK.Location = new System.Drawing.Point(10, 56);
+            this.lbl_TK.Name = "lbl_TK";
+            this.lbl_TK.Size = new System.Drawing.Size(50, 13);
+            this.lbl_TK.TabIndex = 17;
+            this.lbl_TK.Text = "Tìm Kiếm";
+            // 
             // txt_TK
             // 
-            this.txt_TK.Location = new System.Drawing.Point(6, 52);
+            this.txt_TK.Location = new System.Drawing.Point(66, 53);
             this.txt_TK.Name = "txt_TK";
             this.txt_TK.Size = new System.Drawing.Size(159, 20);
             this.txt_TK.TabIndex = 16;
+            this.txt_TK.TextChanged += new System.EventHandler(this.txt_TK_TextChanged);
             // 
             // comboBox_SapXep
             // 
@@ -154,7 +167,7 @@
             // 
             this.lưuToolStripMenuItem.Name = "lưuToolStripMenuItem";
             this.lưuToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.lưuToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.lưuToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.lưuToolStripMenuItem.Text = "Lưu";
             this.lưuToolStripMenuItem.Click += new System.EventHandler(this.lưuToolStripMenuItem_Click);
             // 
@@ -409,19 +422,10 @@
             this.comboBox_PHAI.Size = new System.Drawing.Size(159, 21);
             this.comboBox_PHAI.TabIndex = 14;
             // 
-            // btn_TimKiem
+            // timer1
             // 
-            this.btn_TimKiem.AutoSize = true;
-            this.btn_TimKiem.BackColor = System.Drawing.Color.Blue;
-            this.btn_TimKiem.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_TimKiem.ForeColor = System.Drawing.Color.White;
-            this.btn_TimKiem.Location = new System.Drawing.Point(171, 48);
-            this.btn_TimKiem.Name = "btn_TimKiem";
-            this.btn_TimKiem.Size = new System.Drawing.Size(75, 30);
-            this.btn_TimKiem.TabIndex = 17;
-            this.btn_TimKiem.Text = "Tìm Kiếm";
-            this.btn_TimKiem.UseVisualStyleBackColor = false;
-            this.btn_TimKiem.Click += new System.EventHandler(this.btn_TimKiem_Click);
+            this.timer1.Interval = 600;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // Form1
             // 
@@ -484,8 +488,9 @@
         private System.Windows.Forms.ToolStripMenuItem thoátToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem dữLiệuToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem thốngKêToolStripMenuItem;
-        private System.Windows.Forms.Button btn_TimKiem;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.Label lbl_TK;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 

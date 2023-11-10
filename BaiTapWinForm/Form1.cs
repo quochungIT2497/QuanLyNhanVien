@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.IO;
+using System.Threading;
+using System.Timers;
 
 namespace BaiTapWinForm
 {
@@ -20,6 +22,8 @@ namespace BaiTapWinForm
         }
         Modify modify = new Modify();
         QuanLyNhanVien QLNV;
+        private string label = "  Quản Lý Nhân Sự";
+        private int vitri = 0;
 
         private int CHECKPHAI()
         {
@@ -30,10 +34,13 @@ namespace BaiTapWinForm
             return 0;
         }
 
+        
+
         private void Form1_Load(object sender, EventArgs e)
         {
             try
             {
+                timer1.Start();
                 dgv_QLNV.DataSource = modify.DT("Select * from NHANVIEN");
             }
             catch(SqlException ex)
@@ -282,12 +289,6 @@ namespace BaiTapWinForm
             }
         }
 
-        private void btn_TimKiem_Click(object sender, EventArgs e)
-        {
-            string rowfilter = string.Format("{0} like '{1}'", "HO_TEN", "*" + txt_TK.Text + "*");
-            (dgv_QLNV.DataSource as DataTable).DefaultView.RowFilter = rowfilter;
-        }
-
         private void comboBox_SapXep_SelectedIndexChanged(object sender, EventArgs e)
         {
             if(comboBox_SapXep.SelectedIndex == 0)
@@ -331,11 +332,10 @@ namespace BaiTapWinForm
             rp.ShowDialog();
         }
 
-
-        /*private void txt_TK_TextChanged(object sender, EventArgs e)
+        private void txt_TK_TextChanged(object sender, EventArgs e)
         {
-            string HOTEN = txt_HT.Text.Trim();
-            if(HOTEN =="")
+            string HOTEN = txt_TK.Text.Trim();
+            if (HOTEN == "")
             {
                 Form1_Load(sender, e);
             }
@@ -344,15 +344,24 @@ namespace BaiTapWinForm
                 string query = "Select * from NHANVIEN where [HO_TEN] like N'%" + HOTEN + "%'";
                 try
                 {
-                    //dgv_QLNV.DataSource = modify.DT(query);
-                        modify.Command(query);
-                        Form1_Load(sender, e);
+                    dgv_QLNV.DataSource = modify.DT(query);
+                    //modify.Command(query);
+                    //Form1_Load(sender, e);
                 }
                 catch (SqlException ex)
                 {
                     MessageBox.Show("Không tìm thấy kết quả,Thông báo");
                 }
             }
-        }*/
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            timer1.Tick += timer1_Tick;
+            vitri = (vitri+1) % label.Length;
+            lbl_QL.Text =  label.Substring(vitri) + label.Substring(0,vitri);
+        }
+        /*string rowfilter = string.Format("{0} like '{1}'", "HO_TEN", "*" + txt_TK.Text + "*");
+            (dgv_QLNV.DataSource as DataTable).DefaultView.RowFilter = rowfilter;*/
     }
 }
